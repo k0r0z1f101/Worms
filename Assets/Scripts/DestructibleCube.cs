@@ -12,13 +12,13 @@ public class DestructibleCube : MonoBehaviour
     {
         mesh = GetComponent<MeshRenderer>();
         startTime = Time.time;
-        ApplyForce2();
+        //ApplyForce2();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Time.time - startTime > 3.0f)
+        if (Time.time - startTime > 3.0f && false)
         {
             mesh.material.color = Color.Lerp(mesh.material.color, Color.clear, 2.0f * Time.deltaTime);
         }
