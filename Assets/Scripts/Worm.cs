@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Worm : MonoBehaviour
 {
@@ -20,5 +21,21 @@ public class Worm : MonoBehaviour
     public void SetTeam(int teamNumber)
     {
         _teamNumber = teamNumber;
+    }
+
+    private bool IsGrounded;
+    
+    void OnCollisionStay(Collision other)
+    {
+        if (other.transform.tag == "Ground")
+        {
+            IsGrounded = true;
+            Debug.Log("Grounded");
+        }
+        else
+        {
+            IsGrounded = false;
+            Debug.Log("Not Grounded!");
+        }
     }
 }
