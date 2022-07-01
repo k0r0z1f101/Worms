@@ -1,35 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DestructibleCube : MonoBehaviour
 {
     private float startTime = 0;
+    private bool stopApplying = false;
+    private float awakeTime;
 
     private Renderer mesh;
-    // Start is called before the first frame update
     void Awake()
     {
         mesh = GetComponent<MeshRenderer>();
-        startTime = Time.time;
-        //ApplyForce2();
+        awakeTime = Time.time;
     }
 
-    // Update is called once per frame
+    void Update()
+    {
+        if (Time.time - awakeTime > 0.0f && !stopApplying)
+        {
+            startTime = Time.time;
+            ApplyForce();
+            stopApplying = true;
+        }
+    }
+    
     void FixedUpdate()
     {
-        if (Time.time - startTime > 3.0f && false)
+        if (stopApplying)
         {
-            mesh.material.color = Color.Lerp(mesh.material.color, Color.clear, 2.0f * Time.deltaTime);
-        }
+            if (Time.time - startTime > 3.0f)
+            {
+                mesh.material.color = Color.Lerp(mesh.material.color, Color.clear, 2.0f * Time.deltaTime);
+            }
 
-        if (mesh.material.color == Color.clear)
-        {
-            Destroy(gameObject);
+            if (mesh.material.color == Color.clear)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
-    public void ApplyForce2()
+    public void ApplyForce()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
