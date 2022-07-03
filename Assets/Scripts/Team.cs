@@ -32,4 +32,17 @@ struct Team
     {
         return names[number];
     }
-}
+    
+    public void SetScore()
+    {
+        foreach(Transform child in teamObj.transform)
+        {
+            Debug.Log(child.gameObject.name);
+        }
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+}   

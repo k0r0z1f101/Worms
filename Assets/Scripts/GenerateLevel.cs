@@ -15,8 +15,10 @@ public class GenerateLevel : MonoBehaviour
         ref float maxDistanceFromHole, ref int wormsQty)
     {
         _holes = new List<Vector2>();
-        _destructiblePrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Destructible.prefab", typeof(GameObject));
-        _indestructiblePrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Indestructible.prefab", typeof(GameObject));
+        //_destructiblePrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Destructible.prefab", typeof(GameObject));
+        _destructiblePrefab = Resources.Load<GameObject>("Destructible") as GameObject;
+        _indestructiblePrefab = Resources.Load<GameObject>("Indestructible") as GameObject;
+        //_indestructiblePrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Indestructible.prefab", typeof(GameObject));
         _gameController = gameObject.GetComponent<GameController>();
         _blocksParent = new GameObject("Blocks");
         
@@ -81,7 +83,8 @@ public class GenerateLevel : MonoBehaviour
         GameObject newBlock = _indestructiblePrefab;
         newBlock.transform.position = new Vector3(pos.x, pos.y - 1, 1);
         Instantiate(newBlock, _blocksParent.transform);
-        GameObject newWorm = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Worm.prefab", typeof(GameObject));
+        //GameObject newWorm = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Worm.prefab", typeof(GameObject));
+        GameObject newWorm = Resources.Load<GameObject>("Worm");
         newWorm.name = name;
         Worm newWormScript = newWorm.GetComponent<Worm>();
         newWormScript.SetName(name);
