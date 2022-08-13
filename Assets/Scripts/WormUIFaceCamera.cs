@@ -9,8 +9,10 @@ public class WormUIFaceCamera : MonoBehaviour
     [SerializeField] private Camera _object;
 
     private void Awake()
-    {
+    {   
         _object = Camera.main;
+        //print(gameObject.GetComponent<Worm>().GetTeam());
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = transform.parent.parent.name == "Team_0" ? Color.red : Color.blue;
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = transform.parent.name.Replace("(Clone)","");
 
     }

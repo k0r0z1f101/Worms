@@ -33,12 +33,18 @@ struct Team
         return names[number];
     }
     
-    public void SetScore()
+    public int SetScore()
     {
+        int total = 0;
         foreach(Transform child in teamObj.transform)
         {
-            Debug.Log(child.gameObject.name);
+            //Debug.Log(child.GetComponent<Worm>().GetHealth());
+            total += child.GetComponent<Worm>().GetHealth();
         }
+
+        score = total;
+        //Debug.Log(total);
+        return total;
     }
 
     public int GetScore()

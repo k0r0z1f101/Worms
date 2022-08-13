@@ -66,7 +66,7 @@ public class GenerateLevel : MonoBehaviour
     }
 
     //test fonction
-    void ExplodeBlocks(ref Vector2 pos, ref float radius)
+    public void ExplodeBlocks(ref Vector2 pos, ref float radius)
     {
         Collider[] blocksConverted = Physics.OverlapSphere(new Vector3(pos.x, pos.y, 1), radius);
         for (int c = 0; c < blocksConverted.Length; ++c)
